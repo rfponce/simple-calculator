@@ -34,6 +34,7 @@ body {
   0px -5px 5px rgba(0, 0, 0, 0.4) inset;
   display: flex;
   flex-direction: column;
+  background-color: #faf7ed;
 }
 
 header {
