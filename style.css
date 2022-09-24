@@ -48,6 +48,11 @@ header {
   margin: 1rem;
 }
 
+.subtext {
+  width: 1rem;
+  height: 1rem;
+}
+
 #display {
   display: flex;
   justify-content: space-between;
