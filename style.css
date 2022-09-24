@@ -36,6 +36,15 @@ body {
   flex-direction: column;
 }
 
+header {
+  height: 5rem;
+  font-size: 1.6rem;
+  font-weight: bold;
+  padding: 1rem;
+  text-align: right;
+  color: #ff3333;
+}
+
 #display {
   display: flex;
   justify-content: space-around;
