@@ -95,6 +95,13 @@ header {
   border-radius: 1rem;
   background-color: #282735;
   color: #faf7ed;
+  transition: box-shadow 0.2s;
+}
+
+.button:active {
+  box-shadow: 
+  0px 8px 5px rgba(255, 255, 255, 0.4) inset,
+  0px -8px 5px rgba(0, 0, 0, 0.4) inset;
 }
 
 .plus-button {
