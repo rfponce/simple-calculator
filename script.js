@@ -28,6 +28,7 @@ let operand2 = null;
 let memory = null;
 let isErrorActive = false;
 let isNegativeNumberSignActive = false;
+let displayValue = null;
 
 function turnOff() {
   mainNumbers.innerText = '';
