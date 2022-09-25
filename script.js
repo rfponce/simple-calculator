@@ -1,7 +1,7 @@
-function turnOff() {
-  const mainNumbers = document.getElementById('display');
-  const subtext = document.querySelectorAll('.subtext');
+const mainNumbers = document.getElementById('display');
+const subtext = document.querySelectorAll('.subtext');
 
+function turnOff() {
   mainNumbers.innerText = '';
   subtext.forEach(subtextContainer => subtextContainer.innerText = '');
 }
