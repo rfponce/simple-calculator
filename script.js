@@ -1,5 +1,5 @@
-let operand1 = null;
-let operand2 = null;
+let operand1 = '';
+let operand2 = '';
 let activeOperand = 1;
 const allNumberButtons = document.querySelectorAll('.number');
 
@@ -43,23 +43,28 @@ function inputNumber(event) {
   let value = event.target.id;
   
   if (activeOperand === 1) {
-    if (operand1 === null || Number(operand1) === 0) {
-      operand1 = value;
-      LCD_Display.displayOnScreen(Number(operand1));
-    }
-    else {
-      operand1 += value;
-      LCD_Display.displayOnScreen(Number(operand1));
+    if (operand1.length < 8) {
+      // Do not let to keep a 0 on the left side of the string. Be example: 0519
+      if (operand1 === '' || Number(operand1) === 0) {
+        operand1 = value;
+        LCD_Display.displayOnScreen(Number(operand1));
+      }
+      else {
+        operand1 += value;
+        LCD_Display.displayOnScreen(Number(operand1));
+      }
     }
   }
   else if (activeOperand === 2) {
-    if (operand2 === null || Number(operand2) === 0) {
-      operand2 = value;
-      LCD_Display.displayOnScreen(Number(operand2));
-    }
-    else {
-      operand2 += value;
-      LCD_Display.displayOnScreen(Number(operand2));
+    if (operand2.length < 8) {
+      if (operand2 === '' || Number(operand2) === 0) {
+        operand2 = value;
+        LCD_Display.displayOnScreen(Number(operand2));
+      }
+      else {
+        operand2 += value;
+        LCD_Display.displayOnScreen(Number(operand2));
+      }
     }
   }
 }
