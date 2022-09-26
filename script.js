@@ -86,3 +86,7 @@ function getResult_ClearMemory() {
 function setNumber() {
 
 }
+
+function clearScreen() {
+
+}
