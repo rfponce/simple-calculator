@@ -79,6 +79,10 @@ header {
   padding: 0.3rem;
 }
 
+#display {
+  padding-right: 0.3rem;
+}
+
 #buttons {
   margin: 2rem;
   display: grid;
