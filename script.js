@@ -1,3 +1,8 @@
+let operand1 = null;
+let operand2 = null;
+let activeOperand = 1;
+const allNumberButtons = document.querySelectorAll('.number');
+
 function Display() {
   this.displayOnScreen = function(value) {
     const LCD = document.getElementById('display');
@@ -32,3 +37,31 @@ function Display() {
     else LCD.innerText = Number(value);
   }
 }
+
+function inputNumber(event) {
+  const LCD_Display = new Display();
+  let value = event.target.id;
+  
+  if (activeOperand === 1) {
+    if (operand1 === null || Number(operand1) === 0) {
+      operand1 = value;
+      LCD_Display.displayOnScreen(Number(operand1));
+    }
+    else {
+      operand1 += value;
+      LCD_Display.displayOnScreen(Number(operand1));
+    }
+  }
+  else if (activeOperand === 2) {
+    if (operand2 === null || Number(operand2) === 0) {
+      operand2 = value;
+      LCD_Display.displayOnScreen(Number(operand2));
+    }
+    else {
+      operand2 += value;
+      LCD_Display.displayOnScreen(Number(operand2));
+    }
+  }
+}
+
+allNumberButtons.forEach(button => button.addEventListener('click', inputNumber));
