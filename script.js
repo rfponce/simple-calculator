@@ -38,9 +38,8 @@ function Display() {
   }
 }
 
-function inputNumber(event) {
+function inputNumber(value) {
   const LCD_Display = new Display();
-  let value = event.target.id;
   
   if (activeOperand === 1) {
     if (operand1.length < 8) {
@@ -69,27 +68,22 @@ function inputNumber(event) {
   }
 }
 
-function setOperator(event) {
-  const operatorId = event.target.id;
-
-  switch(operatorId) {
-    case 'adding':
+function setOperator(value) {
+  switch(value) {
+    case '+':
       operator = '+';
-      activeOperand = 2;
       break;
-    case 'subtracting':
+    case '-':
       operator = '-';
-      activeOperand = 2;
       break;
-    case 'multiplying':
+    case '*':
       operator = '*';
-      activeOperand = 2;
       break;
-    case 'dividing':
+    case '/':
       operator = '/';
-      activeOperand = 2;
       break;
   }
+  activeOperand = 2;
 }
 
 function operate() {
@@ -116,6 +110,50 @@ function operate() {
   LCD_Display.displayOnScreen(result);
 }
 
-allNumberButtons.forEach(button => button.addEventListener('click', inputNumber));
-allOperators.forEach(operator => operator.addEventListener('click', setOperator));
+function manageInput(event) {
+  if (event.type === 'keypress') {
+    if (event.keyCode >= 48 && event.keyCode <= 57) { // If the key pressed was a number
+      inputNumber(event.key);
+    }
+    else {
+      switch(event.key) {
+        case '+':
+          setOperator('+');
+          break;
+        case '-':
+          setOperator('-');
+          break;
+        case '*':
+          setOperator('*');
+          break;
+        case '/':
+          setOperator('/');
+          break;
+      }
+    }
+  }
+  else if (event.type === 'click') {
+    if (event.target.className.includes('operator')) {
+      switch(event.target.id) {
+        case 'adding':
+          setOperator('+');
+          break;
+        case 'subtracting':
+          setOperator('-');
+          break;
+        case 'multiplying':
+          setOperator('*');
+          break;
+        case 'dividing':
+          setOperator('/');
+          break;
+      }
+    }
+    else if (event.target.className.includes('number')) inputNumber(event.target.id)
+  }
+}
+
+allNumberButtons.forEach(button => button.addEventListener('click', manageInput));
+allOperators.forEach(operator => operator.addEventListener('click', manageInput));
 equal.addEventListener('click', operate);
+document.addEventListener('keypress', manageInput);
