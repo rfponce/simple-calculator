@@ -71,11 +71,11 @@ function setFloatingPoint() {
 
 }
 
-function memoryAddition() {
+function addMemory() {
 
 }
 
-function memorySubtraction() {
+function subtractMemory() {
 
 }
 
