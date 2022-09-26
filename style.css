@@ -115,7 +115,7 @@ header {
   0px -8px 5px rgba(0, 0, 0, 0.4) inset;
 }
 
-.plus-button {
+#adding {
   grid-area: 5/4/7/5;
   background-color: #ff3333;
 }

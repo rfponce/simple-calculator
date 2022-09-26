@@ -1,7 +1,9 @@
 let operand1 = '0';
 let operand2 = '0';
 let activeOperand = 1;
+let operator = '';
 const allNumberButtons = document.querySelectorAll('.number');
+const allOperators = document.querySelectorAll('.operator');
 
 function Display() {
   this.displayOnScreen = function(value) {
@@ -69,4 +71,28 @@ function inputNumber(event) {
   }
 }
 
+function setOperator(event) {
+  const operatorId = event.target.id;
+
+  switch(operatorId) {
+    case 'adding':
+      operator = '+';
+      activeOperand = 2;
+      break;
+    case 'subtracting':
+      operator = '-';
+      activeOperand = 2;
+      break;
+    case 'multiplying':
+      operator = '*';
+      activeOperand = 2;
+      break;
+    case 'dividing':
+      operator = '/';
+      activeOperand = 2;
+      break;
+  }
+}
+
 allNumberButtons.forEach(button => button.addEventListener('click', inputNumber));
+allOperators.forEach(operator => operator.addEventListener('click', setOperator));
