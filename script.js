@@ -13,31 +13,28 @@ function Display() {
     const subtextNegative = document.getElementById('subtext__negative');
     const subtextMemory = document.getElementById('subtext__memory');
 
-    if(isNaN(value)) {
-      switch(value) {
-        case 'error-on':
-          subtextError.innerText = 'E';
-          break;
-        case 'error-off':
-          subtextError.innerText = '';
-          break;
-        case 'negative-on':
-          subtextNegative.innerText = '-';
-          break;
-        case 'negative-off':
-          subtextNegative.innerText = '';
-          break;
-        case 'memory-on':
-          subtextMemory.innerText = 'M';
-          break;
-        case 'memory-off':
-          subtextMemory.innerText = '';
-          break;
-        default:
-          LCD.innerText = 'ERROR';
-      }
+    switch(value) {
+      case 'error-on':
+        subtextError.innerText = 'E';
+        break;
+      case 'error-off':
+        subtextError.innerText = '';
+        break;
+      case 'negative-on':
+        subtextNegative.innerText = '-';
+        break;
+      case 'negative-off':
+        subtextNegative.innerText = '';
+        break;
+      case 'memory-on':
+        subtextMemory.innerText = 'M';
+        break;
+      case 'memory-off':
+        subtextMemory.innerText = '';
+        break;
+      default:
+        LCD.innerText = value;
     }
-    else LCD.innerText = Number(value);
   }
 }
 
@@ -102,21 +99,21 @@ function operate() {
   switch(operator) {
     case '+':
       result = Number(operand1) + Number(operand2);
-      LCD_Display.displayOnScreen(result);
       break;
     case '-':
       result = Number(operand1) - Number(operand2);
-      LCD_Display.displayOnScreen(result);
       break;
     case '*':
       result = Number(operand1) * Number(operand2);
-      LCD_Display.displayOnScreen(result);
       break;
     case '/':
       result = Number(operand1) / Number(operand2);
-      LCD_Display.displayOnScreen(result);
       break;
   }
+  
+  if (result > 99999999) result = result.toExponential(3).toString(); // Try to get the string shorter (less than 8 digits)
+  if (result > 1.000e+15) result = 'NO SPACE'; // Shows "NO SPACE" because there no more space on display to show the digits
+  LCD_Display.displayOnScreen(result);
 }
 
 allNumberButtons.forEach(button => button.addEventListener('click', inputNumber));
