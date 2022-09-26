@@ -4,6 +4,7 @@ let activeOperand = 1;
 let operator = '';
 const allNumberButtons = document.querySelectorAll('.number');
 const allOperators = document.querySelectorAll('.operator');
+const equal = document.getElementById('equal');
 
 function Display() {
   this.displayOnScreen = function(value) {
@@ -94,5 +95,30 @@ function setOperator(event) {
   }
 }
 
+function operate() {
+  let result;
+  const LCD_Display = new Display();
+
+  switch(operator) {
+    case '+':
+      result = Number(operand1) + Number(operand2);
+      LCD_Display.displayOnScreen(result);
+      break;
+    case '-':
+      result = Number(operand1) - Number(operand2);
+      LCD_Display.displayOnScreen(result);
+      break;
+    case '*':
+      result = Number(operand1) * Number(operand2);
+      LCD_Display.displayOnScreen(result);
+      break;
+    case '/':
+      result = Number(operand1) / Number(operand2);
+      LCD_Display.displayOnScreen(result);
+      break;
+  }
+}
+
 allNumberButtons.forEach(button => button.addEventListener('click', inputNumber));
 allOperators.forEach(operator => operator.addEventListener('click', setOperator));
+equal.addEventListener('click', operate);
