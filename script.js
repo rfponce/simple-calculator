@@ -132,6 +132,9 @@ function manageInput(event) {
         case 'Enter':
           operate();
           break;
+        case '.':
+          inputValue('.');
+          break;
       }
     }
   }
