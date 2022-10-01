@@ -6,6 +6,7 @@ const allNumberButtons = document.querySelectorAll('.number');
 const allOperators = document.querySelectorAll('.operator');
 const equal = document.getElementById('equal');
 const pointBtn = document.getElementById('point');
+const clearButton = document.getElementById('clear');
 
 function Display() {
   this.displayOnScreen = function(value) {
@@ -173,8 +174,17 @@ function manageDecimals(value) {
   }
 }
 
+function clear() {
+  const LCD_Display = new Display();
+  
+  if (activeOperand === 1) operand1 = '0'
+  else operand2 = '0'
+  LCD_Display.displayOnScreen(0);
+}
+
 allNumberButtons.forEach(button => button.addEventListener('click', manageInput));
 allOperators.forEach(operator => operator.addEventListener('click', manageInput));
 equal.addEventListener('click', operate);
 pointBtn.addEventListener('click', manageInput);
+clearButton.addEventListener('click', clear);
 document.addEventListener('keypress', manageInput);
