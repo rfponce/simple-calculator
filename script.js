@@ -38,7 +38,7 @@ function Display() {
   }
 }
 
-function inputNumber(value) {
+function inputValue(value) {
   const LCD_Display = new Display();
   
   if (activeOperand === 1) {
@@ -113,7 +113,7 @@ function operate() {
 function manageInput(event) {
   if (event.type === 'keypress') {
     if (event.keyCode >= 48 && event.keyCode <= 57) { // If the key pressed was a number
-      inputNumber(event.key);
+      inputValue(event.key);
     }
     else {
       switch(event.key) {
@@ -152,7 +152,7 @@ function manageInput(event) {
           break;
       }
     }
-    else if (event.target.className.includes('number')) inputNumber(event.target.id)
+    else if (event.target.className.includes('number')) inputValue(event.target.id)
   }
 }
 
