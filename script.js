@@ -34,7 +34,8 @@ function Display() {
         subtextMemory.innerText = '';
         break;
       default:
-        LCD.innerText = value;
+        if (value.toString().length > 9) LCD.innerText = 'NO SPACE' // Try to avoid display overflow
+        else LCD.innerText = value;
     }
   }
 }
@@ -106,7 +107,6 @@ function operate() {
       break;
   }
   
-  if (result.toString().length > 9) result = 'NO SPACE'; // Try to avoid display overflow
   LCD_Display.displayOnScreen(result);
 }
 
