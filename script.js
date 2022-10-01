@@ -47,12 +47,7 @@ function inputValue(value) {
       // Do not let to keep a 0 on the left side of the string. Be example: 0519
       if (Number(operand1) === 0) {
         operand1 = value;
-        if (value === '.') LCD_Display.displayOnScreen('0' + operand1);
-        else LCD_Display.displayOnScreen(operand1);
-      }
-      else if (operand1 === '.' || operand1 < 1) {
-        operand1 += value;
-        LCD_Display.displayOnScreen('0' + operand1);
+        LCD_Display.displayOnScreen(operand1);
       }
       else {
         operand1 += value;
@@ -64,12 +59,7 @@ function inputValue(value) {
     if (operand2.length < 8) {
       if (Number(operand2) === 0) {
         operand2 = value;
-        if (value === '.') LCD_Display.displayOnScreen('0' + operand2);
-        else LCD_Display.displayOnScreen(operand2);
-      }
-      else if (operand2 === '.' || operand2 < 1) {
-        operand2 += value;
-        LCD_Display.displayOnScreen('0' + operand2);
+        LCD_Display.displayOnScreen(operand2);
       }
       else {
         operand2 += value;
