@@ -107,7 +107,7 @@ function operate() {
       break;
   }
   
-  LCD_Display.displayOnScreen(result);
+  LCD_Display.displayOnScreen(manageDecimals(result));
 }
 
 function manageInput(event) {
@@ -157,6 +157,19 @@ function manageInput(event) {
     }
     else if (event.target.className.includes('number')) inputValue(event.target.id)
     else if (event.target.id === 'point') inputValue('.')
+  }
+}
+
+function manageDecimals(value) {
+  let decimals = value % 1; // Separate the decimal part of a number
+  let integers = Math.trunc(value);
+  let decimalDigits = 8 - integers.toString().length; // Calculate how many decimal spaces are left to avoid overflow
+  let formattedNumber;
+
+  if (decimalDigits < 1)  return value;
+  else {
+    formattedNumber = integers + Number(decimals.toFixed(decimalDigits));
+     return formattedNumber;
   }
 }
 
