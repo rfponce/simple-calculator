@@ -5,6 +5,7 @@ let operator = '';
 const allNumberButtons = document.querySelectorAll('.number');
 const allOperators = document.querySelectorAll('.operator');
 const equal = document.getElementById('equal');
+const pointBtn = document.getElementById('point');
 
 function Display() {
   this.displayOnScreen = function(value) {
@@ -156,10 +157,12 @@ function manageInput(event) {
       }
     }
     else if (event.target.className.includes('number')) inputValue(event.target.id)
+    else if (event.target.id === 'point') inputValue('.')
   }
 }
 
 allNumberButtons.forEach(button => button.addEventListener('click', manageInput));
 allOperators.forEach(operator => operator.addEventListener('click', manageInput));
 equal.addEventListener('click', operate);
+pointBtn.addEventListener('click', manageInput);
 document.addEventListener('keypress', manageInput);
