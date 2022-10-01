@@ -46,7 +46,7 @@ function inputValue(value) {
   if (activeOperand === 1) {
     if (operand1.length < 8) {
       // Do not let to keep a 0 on the left side of the string. Be example: 0519
-      if (Number(operand1) === 0) {
+      if (operand1 === '0') {
         operand1 = value;
         LCD_Display.displayOnScreen(operand1);
       }
@@ -58,7 +58,7 @@ function inputValue(value) {
   }
   else if (activeOperand === 2) {
     if (operand2.length < 8) {
-      if (Number(operand2) === 0) {
+      if (operand2 === '0') {
         operand2 = value;
         LCD_Display.displayOnScreen(operand2);
       }
@@ -166,7 +166,7 @@ function manageDecimals(value) {
   let decimalDigits = 8 - integers.toString().length; // Calculate how many decimal spaces are left to avoid overflow
   let formattedNumber;
 
-  if (decimalDigits < 1)  return value;
+  if (decimalDigits < 1) return value;
   else {
     formattedNumber = integers + Number(decimals.toFixed(decimalDigits));
      return formattedNumber;
