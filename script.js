@@ -129,6 +129,9 @@ function manageInput(event) {
         case '/':
           setOperator('/');
           break;
+        case 'Enter':
+          operate();
+          break;
       }
     }
   }
