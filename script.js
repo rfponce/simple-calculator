@@ -117,6 +117,7 @@ function operate() {
   }
   
   if (result > 99999999) result = result.toExponential(3).toString(); // Try to get the string shorter (less than 8 digits)
+  if (result < 0.99999999) result = result.toExponential(3).toString();
   if (result > 1.000e+15) result = 'NO SPACE'; // Shows "NO SPACE" because there no more space on display to show the digits
   LCD_Display.displayOnScreen(result);
 }
