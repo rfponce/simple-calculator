@@ -2,11 +2,11 @@
 
 ## Introduction
 
-Simple Calculator is a program to make basic arithmetic calculations like adding, subtracting, multiplying, and dividing, as well as calculating percentages. Also, it can store values in memory, add and subtract them. 
+Simple Calculator is a program to make basic arithmetic calculations like adding, subtracting, multiplying, and dividing, as well as calculating percentages. Also, it can store values in memory, add and subtract them.
 
 ## Usage
 
-Input a value with the keypad on the screen or the physical keyboard, select an operator, enter the second value, then press = to make a calculation. 
+Input a value with the keypad on the screen or the physical keyboard, select an operator, enter the second value, then press = to make a calculation.
 
 ### Clean a value
 
