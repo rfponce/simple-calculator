@@ -7,6 +7,7 @@ const allOperators = document.querySelectorAll('.operator');
 const equal = document.getElementById('equal');
 const pointBtn = document.getElementById('point');
 const clearButton = document.getElementById('clear');
+const percentButton = document.getElementById('percent');
 
 function Display() {
   this.displayOnScreen = function(value) {
@@ -185,9 +186,17 @@ function clear() {
   LCD_Display.displayOnScreen(0);
 }
 
+function setPercent() {
+  if (activeOperand === 2) {
+    operand2 = operand2 / 100;
+    operate();
+  }
+}
+
 allNumberButtons.forEach(button => button.addEventListener('click', manageInput));
 allOperators.forEach(operator => operator.addEventListener('click', manageInput));
 equal.addEventListener('click', operate);
 pointBtn.addEventListener('click', manageInput);
 clearButton.addEventListener('click', clear);
+percentButton.addEventListener('click', setPercent);
 document.addEventListener('keypress', manageInput);
