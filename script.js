@@ -8,6 +8,7 @@ const equal = document.getElementById('equal');
 const pointBtn = document.getElementById('point');
 const clearButton = document.getElementById('clear');
 const percentButton = document.getElementById('percent');
+const signButton = document.getElementById('plus-minus-sign');
 
 function Display() {
   this.displayOnScreen = function(value) {
@@ -22,12 +23,6 @@ function Display() {
         break;
       case 'error-off':
         subtextError.innerText = '';
-        break;
-      case 'negative-on':
-        subtextNegative.innerText = '-';
-        break;
-      case 'negative-off':
-        subtextNegative.innerText = '';
         break;
       case 'memory-on':
         subtextMemory.innerText = 'M';
@@ -196,10 +191,36 @@ function setPercent() {
   }
 }
 
+function setSign() {
+  const LCD_Display = new Display();
+  
+  if (activeOperand === 1) {
+    if (!operand1.includes('-') && operand1 !== '0') {
+      operand1 = '-' + operand1;
+      LCD_Display.displayOnScreen(operand1);
+    }
+    else {
+      operand1 = operand1.replace('-', '');
+      LCD_Display.displayOnScreen(operand1);
+    }
+  }
+  else if (activeOperand === 2) {
+    if (!operand2.includes('-') && operand2 !== '0') {
+      operand2 = '-' + operand2;
+      LCD_Display.displayOnScreen(operand2);
+    }
+    else {
+      operand2 = operand2.replace('-', '');
+      LCD_Display.displayOnScreen(operand2);
+    }
+  }
+}
+
 allNumberButtons.forEach(button => button.addEventListener('click', manageInput));
 allOperators.forEach(operator => operator.addEventListener('click', manageInput));
 equal.addEventListener('click', operate);
 pointBtn.addEventListener('click', manageInput);
 clearButton.addEventListener('click', cleanValue);
 percentButton.addEventListener('click', setPercent);
+signButton.addEventListener('click', setSign);
 document.addEventListener('keypress', manageInput);
