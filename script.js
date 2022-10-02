@@ -9,6 +9,7 @@ const pointBtn = document.getElementById('point');
 const clearButton = document.getElementById('clear');
 const percentButton = document.getElementById('percent');
 const signButton = document.getElementById('plus-minus-sign');
+const onCaButton = document.getElementById('on-ca');
 
 function Display() {
   this.displayOnScreen = function(value) {
@@ -222,6 +223,18 @@ function setSign() {
   }
 }
 
+function initializeCalculator() {
+  operand1 = '0';
+  operand2 = '0';
+  activeOperand = 1;
+  operator = '';
+  const LCD_Display = new Display();
+
+  LCD_Display.displayOnScreen('0');
+  LCD_Display.displayOnScreen('error-off');
+  LCD_Display.displayOnScreen('memory-off');
+}
+
 allNumberButtons.forEach(button => button.addEventListener('click', manageInput));
 allOperators.forEach(operator => operator.addEventListener('click', manageInput));
 equal.addEventListener('click', operate);
@@ -229,4 +242,6 @@ pointBtn.addEventListener('click', manageInput);
 clearButton.addEventListener('click', cleanValue);
 percentButton.addEventListener('click', setPercent);
 signButton.addEventListener('click', setSign);
+onCaButton.addEventListener('click', initializeCalculator);
 document.addEventListener('keypress', manageInput);
+document.addEventListener('DOMContentLoaded', initializeCalculator);
