@@ -138,6 +138,9 @@ function manageInput(event) {
         case '%':
           setPercent();
           break;
+        case 's':
+          setSign();
+          break;
       }
     }
   }
