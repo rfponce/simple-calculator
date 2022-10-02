@@ -105,6 +105,9 @@ function operate() {
   }
   
   LCD_Display.displayOnScreen(manageDecimals(result));
+  operand1 = result.toString();
+  operand2 = '0';
+  activeOperand = 1;
 }
 
 function manageInput(event) {
