@@ -12,6 +12,7 @@ const percentButton = document.getElementById('percent');
 const signButton = document.getElementById('plus-minus-sign');
 const onCaButton = document.getElementById('on-ca');
 const memoryAddButton = document.getElementById('m-add');
+const memorySubtractButton = document.getElementById('m-sub');
 
 function Display() {
   this.displayOnScreen = function(value) {
@@ -246,6 +247,14 @@ function memoryAdd() {
   else if (operand2 !== 0) memory += Number(operand2);
 }
 
+function memorySubtract() {
+  if (activeOperand = 1) {
+    memory -= Number(operand1);
+  }
+  else if (operand2 !== 0) memory -= Number(operand2);
+  console.log(memory, operand1, operand2);
+}
+
 allNumberButtons.forEach(button => button.addEventListener('click', manageInput));
 allOperators.forEach(operator => operator.addEventListener('click', manageInput));
 equal.addEventListener('click', operate);
@@ -255,5 +264,6 @@ percentButton.addEventListener('click', setPercent);
 signButton.addEventListener('click', setSign);
 onCaButton.addEventListener('click', initializeCalculator);
 memoryAddButton.addEventListener('click', memoryAdd);
+memorySubtractButton.addEventListener('click', memorySubtract);
 document.addEventListener('keypress', manageInput);
 document.addEventListener('DOMContentLoaded', initializeCalculator);
