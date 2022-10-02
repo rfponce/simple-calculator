@@ -14,6 +14,8 @@ Input a value with the keypad on the screen or the physical keyboard, select an 
 
 If you want to delete the last value entered you can click on the C button (C for Clean) or press the key c on the keyboard.
 
+By the other hand if you want to reset all values you can use the ON/CA button or 'a' on the keyboard.
+
 ### Percentages
 
 To work with percentages enter a value, later an operator and then the percent button. Is not necessary to click on the equal button. By example: 1500, X button, 12, % button, will return 180. This operation can be made with the keyboard with the next sequence: 1500 * 12 %.
