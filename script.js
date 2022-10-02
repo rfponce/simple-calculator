@@ -2,6 +2,7 @@ let operand1 = '0';
 let operand2 = '0';
 let activeOperand = 1;
 let operator = '';
+let memory = 0;
 const allNumberButtons = document.querySelectorAll('.number');
 const allOperators = document.querySelectorAll('.operator');
 const equal = document.getElementById('equal');
@@ -10,12 +11,12 @@ const clearButton = document.getElementById('clear');
 const percentButton = document.getElementById('percent');
 const signButton = document.getElementById('plus-minus-sign');
 const onCaButton = document.getElementById('on-ca');
+const memoryAddButton = document.getElementById('m-add');
 
 function Display() {
   this.displayOnScreen = function(value) {
     const LCD = document.getElementById('display');
     const subtextError = document.getElementById('subtext__error');
-    const subtextNegative = document.getElementById('subtext__negative');
     const subtextMemory = document.getElementById('subtext__memory');
 
     switch(value) {
@@ -238,6 +239,13 @@ function initializeCalculator() {
   LCD_Display.displayOnScreen('memory-off');
 }
 
+function memoryAdd() {
+  if (activeOperand = 1) {
+    memory += Number(operand1);
+  }
+  else if (operand2 !== 0) memory += Number(operand2);
+}
+
 allNumberButtons.forEach(button => button.addEventListener('click', manageInput));
 allOperators.forEach(operator => operator.addEventListener('click', manageInput));
 equal.addEventListener('click', operate);
@@ -246,5 +254,6 @@ clearButton.addEventListener('click', cleanValue);
 percentButton.addEventListener('click', setPercent);
 signButton.addEventListener('click', setSign);
 onCaButton.addEventListener('click', initializeCalculator);
+memoryAddButton.addEventListener('click', memoryAdd);
 document.addEventListener('keypress', manageInput);
 document.addEventListener('DOMContentLoaded', initializeCalculator);
