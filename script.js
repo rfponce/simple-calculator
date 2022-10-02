@@ -140,6 +140,9 @@ function manageInput(event) {
         case 'c':
           clear();
           break;
+        case '%':
+          setPercent();
+          break;
       }
     }
   }
