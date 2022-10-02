@@ -150,6 +150,9 @@ function manageInput(event) {
         case 'a':
           initializeCalculator();
           break;
+        case 'd':
+          memoryAdd();
+          break;
       }
     }
   }
