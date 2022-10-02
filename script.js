@@ -52,7 +52,7 @@ function inputValue(value) {
         LCD_Display.displayOnScreen(operand1);
       }
       else {
-        operand1 += value;
+        if (value === '.' && !operand1.includes('.') || value !== '.') operand1 += value; // Avoid multiple points input
         LCD_Display.displayOnScreen(operand1);
       }
     }
@@ -64,7 +64,7 @@ function inputValue(value) {
         LCD_Display.displayOnScreen(operand2);
       }
       else {
-        operand2 += value;
+        if (value === '.' && !operand2.includes('.') || value !== '.') operand2 += value;
         LCD_Display.displayOnScreen(operand2);
       }
     }
