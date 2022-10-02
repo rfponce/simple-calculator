@@ -87,7 +87,7 @@ function setOperator(value) {
 }
 
 function operate() {
-  let result;
+  let result = '0';
   const LCD_Display = new Display();
 
   switch(operator) {
@@ -144,6 +144,9 @@ function manageInput(event) {
           break;
         case 's':
           setSign();
+          break;
+        case 'a':
+          initializeCalculator();
           break;
       }
     }
