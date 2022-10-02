@@ -138,7 +138,7 @@ function manageInput(event) {
           inputValue('.');
           break;
         case 'c':
-          clear();
+          cleanValue();
           break;
         case '%':
           setPercent();
@@ -181,7 +181,7 @@ function manageDecimals(value) {
   }
 }
 
-function clear() {
+function cleanValue() {
   const LCD_Display = new Display();
   
   if (activeOperand === 1) operand1 = '0'
@@ -200,6 +200,6 @@ allNumberButtons.forEach(button => button.addEventListener('click', manageInput)
 allOperators.forEach(operator => operator.addEventListener('click', manageInput));
 equal.addEventListener('click', operate);
 pointBtn.addEventListener('click', manageInput);
-clearButton.addEventListener('click', clear);
+clearButton.addEventListener('click', cleanValue);
 percentButton.addEventListener('click', setPercent);
 document.addEventListener('keypress', manageInput);

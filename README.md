@@ -8,7 +8,9 @@ Simple Calculator is a program to make basic arithmetic calculations like adding
 
 Input a value with the keypad on the screen or the physical keyboard, select an operator, enter the second value, then press = to make a calculation. 
 
-If you want to delete the last value entered you can click on the C button or press the key C on the keyboard.
+### Clean a value
+
+If you want to delete the last value entered you can click on the C button (C for Clean) or press the key C on the keyboard.
 
 ### Percentages
 
