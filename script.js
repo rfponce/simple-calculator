@@ -153,6 +153,9 @@ function manageInput(event) {
         case 'd':
           memoryAdd();
           break;
+        case 'f':
+          memorySubtract();
+          break;
       }
     }
   }
@@ -255,7 +258,6 @@ function memorySubtract() {
     memory -= Number(operand1);
   }
   else if (operand2 !== 0) memory -= Number(operand2);
-  console.log(memory, operand1, operand2);
 }
 
 allNumberButtons.forEach(button => button.addEventListener('click', manageInput));
