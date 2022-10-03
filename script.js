@@ -73,6 +73,7 @@ function inputValue(value) {
 }
 
 function setOperator(value) {
+  if (activeOperand === 2) operate();
   switch(value) {
     case '+':
       operator = '+';
@@ -86,6 +87,8 @@ function setOperator(value) {
     case '/':
       operator = '/';
       break;
+    default:
+      console.warn('unknown operator');
   }
   activeOperand = 2;
 }
@@ -107,12 +110,14 @@ function operate() {
     case '/':
       result = Number(operand1) / Number(operand2);
       break;
+    default:
+      console.warn('unknown operation');
   }
   
   LCD_Display.displayOnScreen(manageDecimals(result));
   operand1 = result.toString();
   operand2 = '0';
-  activeOperand = 1;
+  activeOperand = 2;
 }
 
 function manageInput(event) {
