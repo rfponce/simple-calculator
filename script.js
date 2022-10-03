@@ -148,7 +148,7 @@ function manageInput(event) {
           setSign();
           break;
         case 'a':
-          initializeCalculator();
+          resetCalculator();
           break;
         case 'd':
           memoryAdd();
@@ -234,7 +234,7 @@ function setSign() {
   }
 }
 
-function initializeCalculator() {
+function resetCalculator() {
   operand1 = '0';
   operand2 = '0';
   activeOperand = 1;
@@ -243,7 +243,6 @@ function initializeCalculator() {
 
   LCD_Display.displayOnScreen('0');
   LCD_Display.displayOnScreen('error-off');
-  LCD_Display.displayOnScreen('memory-off');
 }
 
 function memoryAdd() {
@@ -279,8 +278,8 @@ pointBtn.addEventListener('click', manageInput);
 clearButton.addEventListener('click', cleanValue);
 percentButton.addEventListener('click', setPercent);
 signButton.addEventListener('click', setSign);
-onCaButton.addEventListener('click', initializeCalculator);
+onCaButton.addEventListener('click', resetCalculator);
 memoryAddButton.addEventListener('click', memoryAdd);
 memorySubtractButton.addEventListener('click', memorySubtract);
 document.addEventListener('keypress', manageInput);
-document.addEventListener('DOMContentLoaded', initializeCalculator);
+document.addEventListener('DOMContentLoaded', resetCalculator);
