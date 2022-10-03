@@ -26,7 +26,7 @@ To make a number positive or negative just click the +/- button or press "s" on 
 
 ### Memory functions
 
-To add a value to memory click on M+ button or use "d" on the keyboard. To decrease the value on screen to memory click on M- button or  "f" on the keyboard.
+To add a value to memory click on M+ button or use "d" on the keyboard. To decrease the value on screen to memory click on M- button or  "f" on the keyboard. When a value is stored on the memory an indicator with an M on the screen will be shown.
 
 ## Limitations
 
