@@ -158,6 +158,9 @@ function manageInput(event) {
         case 'f':
           memorySubtract();
           break;
+        case 'r':
+          recover_clear_memory();
+          break;
       }
     }
   }
