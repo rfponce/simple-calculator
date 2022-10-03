@@ -247,17 +247,29 @@ function initializeCalculator() {
 }
 
 function memoryAdd() {
+  const LCD_Display = new Display();
+
   if (activeOperand = 1) {
     memory += Number(operand1);
+    LCD_Display.displayOnScreen('memory-on');
   }
-  else memory += Number(operand2);
+  else {
+    memory += Number(operand2);
+    LCD_Display.displayOnScreen('memory-on');
+  }
 }
 
 function memorySubtract() {
+  const LCD_Display = new Display();
+
   if (activeOperand = 1) {
     memory -= Number(operand1);
+    LCD_Display.displayOnScreen('memory-on');
   }
-  else memory -= Number(operand2);
+  else {
+    memory -= Number(operand2);
+    LCD_Display.displayOnScreen('memory-on');
+  }
 }
 
 allNumberButtons.forEach(button => button.addEventListener('click', manageInput));
