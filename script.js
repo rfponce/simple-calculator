@@ -271,6 +271,14 @@ function memorySubtract() {
   }
 }
 
+function initializeCalculator() {
+  const LCD_Display = new Display();
+  
+  resetCalculator();
+  memory = 0;
+  LCD_Display.displayOnScreen('memory-off');
+}
+
 allNumberButtons.forEach(button => button.addEventListener('click', manageInput));
 allOperators.forEach(operator => operator.addEventListener('click', manageInput));
 equal.addEventListener('click', operate);
@@ -282,4 +290,4 @@ onCaButton.addEventListener('click', resetCalculator);
 memoryAddButton.addEventListener('click', memoryAdd);
 memorySubtractButton.addEventListener('click', memorySubtract);
 document.addEventListener('keypress', manageInput);
-document.addEventListener('DOMContentLoaded', resetCalculator);
+document.addEventListener('DOMContentLoaded', initializeCalculator);
