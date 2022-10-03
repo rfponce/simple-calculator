@@ -3,6 +3,7 @@ let operand2 = '0';
 let activeOperand = 1;
 let operator = '';
 let memory = 0;
+let memoryResultClearStatus = 'result';
 const allNumberButtons = document.querySelectorAll('.number');
 const allOperators = document.querySelectorAll('.operator');
 const equal = document.getElementById('equal');
@@ -13,6 +14,7 @@ const signButton = document.getElementById('plus-minus-sign');
 const onCaButton = document.getElementById('on-ca');
 const memoryAddButton = document.getElementById('m-add');
 const memorySubtractButton = document.getElementById('m-sub');
+const memoryRecoverClearButton = document.getElementById('mrc');
 
 function Display() {
   this.displayOnScreen = function(value) {
@@ -239,6 +241,7 @@ function resetCalculator() {
   operand2 = '0';
   activeOperand = 1;
   operator = '';
+  memoryResultClearStatus = 'result';
   const LCD_Display = new Display();
 
   LCD_Display.displayOnScreen('0');
@@ -279,6 +282,28 @@ function initializeCalculator() {
   LCD_Display.displayOnScreen('memory-off');
 }
 
+function recover_clear_memory() {
+  const LCD_Display = new Display();
+
+  if (memoryResultClearStatus === 'result') {
+    if (activeOperand === 1) {
+      operand1 = memory;
+      LCD_Display.displayOnScreen(operand1);
+      memoryResultClearStatus = 'clear';
+    }
+    else {
+      operand2 = memory;
+      LCD_Display.displayOnScreen(operand2);
+      memoryResultClearStatus = 'clear';
+    }
+  }
+  else if (memoryResultClearStatus === 'clear') {
+    memory = 0;
+    LCD_Display.displayOnScreen('memory-off');
+    memoryResultClearStatus = 'result';
+  }
+}
+
 allNumberButtons.forEach(button => button.addEventListener('click', manageInput));
 allOperators.forEach(operator => operator.addEventListener('click', manageInput));
 equal.addEventListener('click', operate);
@@ -289,5 +314,6 @@ signButton.addEventListener('click', setSign);
 onCaButton.addEventListener('click', resetCalculator);
 memoryAddButton.addEventListener('click', memoryAdd);
 memorySubtractButton.addEventListener('click', memorySubtract);
+memoryRecoverClearButton.addEventListener('click', recover_clear_memory);
 document.addEventListener('keypress', manageInput);
 document.addEventListener('DOMContentLoaded', initializeCalculator);
