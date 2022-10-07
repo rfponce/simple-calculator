@@ -17,12 +17,12 @@ const memorySubtractButton = document.getElementById('m-sub');
 const memoryRecoverClearButton = document.getElementById('mrc');
 
 function Display() {
-  this.displayOnScreen = function(value) {
+  this.displayOnScreen = function (value) {
     const LCD = document.getElementById('display');
     const subtextError = document.getElementById('subtext__error');
     const subtextMemory = document.getElementById('subtext__memory');
 
-    switch(value) {
+    switch (value) {
       case 'error-on':
         subtextError.innerText = 'E';
         break;
@@ -44,7 +44,7 @@ function Display() {
 
 function inputValue(value) {
   const LCD_Display = new Display();
-  
+
   if (activeOperand === 1) {
     if (operand1.length < 8) {
       // Do not let to keep a 0 on the left side of the string. Be example: 0519
@@ -74,7 +74,7 @@ function inputValue(value) {
 
 function setOperator(value) {
   if (activeOperand === 2) operate();
-  switch(value) {
+  switch (value) {
     case '+':
       operator = '+';
       break;
@@ -97,7 +97,7 @@ function operate() {
   let result = '0';
   const LCD_Display = new Display();
 
-  switch(operator) {
+  switch (operator) {
     case '+':
       result = Number(operand1) + Number(operand2);
       break;
@@ -113,11 +113,28 @@ function operate() {
     default:
       console.warn('unknown operation');
   }
-  
-  LCD_Display.displayOnScreen(manageDecimals(result));
-  operand1 = result.toString();
-  operand2 = '0';
-  activeOperand = 2;
+
+  if (result === Infinity) {
+    allNumberButtons.forEach(button => button.removeEventListener('click', manageInput));
+    allOperators.forEach(operator => operator.removeEventListener('click', manageInput));
+    equal.removeEventListener('click', operate);
+    pointBtn.removeEventListener('click', manageInput);
+    clearButton.removeEventListener('click', cleanValue);
+    percentButton.removeEventListener('click', setPercent);
+    signButton.removeEventListener('click', setSign);
+    memoryAddButton.removeEventListener('click', memoryAdd);
+    memorySubtractButton.removeEventListener('click', memorySubtract);
+    memoryRecoverClearButton.removeEventListener('click', recover_clear_memory);
+    document.removeEventListener('keypress', manageInput);
+    LCD_Display.displayOnScreen('OOPSY!');
+    LCD_Display.displayOnScreen('error-on');
+  }
+  else {
+    LCD_Display.displayOnScreen(manageDecimals(result));
+    operand1 = result.toString();
+    operand2 = '0';
+    activeOperand = 2;
+  }
 }
 
 function manageInput(event) {
@@ -126,7 +143,7 @@ function manageInput(event) {
       inputValue(event.key);
     }
     else {
-      switch(event.key) {
+      switch (event.key) {
         case '+':
           setOperator('+');
           break;
@@ -171,7 +188,7 @@ function manageInput(event) {
   }
   else if (event.type === 'click') {
     if (event.target.className.includes('operator')) {
-      switch(event.target.id) {
+      switch (event.target.id) {
         case 'adding':
           setOperator('+');
           break;
@@ -200,13 +217,13 @@ function manageDecimals(value) {
   if (decimalDigits < 1) return value;
   else {
     formattedNumber = integers + Number(decimals.toFixed(decimalDigits));
-     return formattedNumber;
+    return formattedNumber;
   }
 }
 
 function cleanValue() {
   const LCD_Display = new Display();
-  
+
   if (activeOperand === 1) operand1 = '0'
   else operand2 = '0'
   LCD_Display.displayOnScreen(0);
@@ -221,7 +238,7 @@ function setPercent() {
 
 function setSign() {
   const LCD_Display = new Display();
-  
+
   if (activeOperand === 1) {
     if (!operand1.includes('-') && operand1 !== '0') {
       operand1 = '-' + operand1;
@@ -254,6 +271,18 @@ function resetCalculator() {
 
   LCD_Display.displayOnScreen('0');
   LCD_Display.displayOnScreen('error-off');
+  allNumberButtons.forEach(button => button.addEventListener('click', manageInput));
+  allOperators.forEach(operator => operator.addEventListener('click', manageInput));
+  equal.addEventListener('click', operate);
+  pointBtn.addEventListener('click', manageInput);
+  clearButton.addEventListener('click', cleanValue);
+  percentButton.addEventListener('click', setPercent);
+  signButton.addEventListener('click', setSign);
+  onCaButton.addEventListener('click', resetCalculator);
+  memoryAddButton.addEventListener('click', memoryAdd);
+  memorySubtractButton.addEventListener('click', memorySubtract);
+  memoryRecoverClearButton.addEventListener('click', recover_clear_memory);
+  document.addEventListener('keypress', manageInput);
 }
 
 function memoryAdd() {
@@ -284,7 +313,7 @@ function memorySubtract() {
 
 function initializeCalculator() {
   const LCD_Display = new Display();
-  
+
   resetCalculator();
   memory = 0;
   LCD_Display.displayOnScreen('memory-off');
@@ -312,16 +341,4 @@ function recover_clear_memory() {
   }
 }
 
-allNumberButtons.forEach(button => button.addEventListener('click', manageInput));
-allOperators.forEach(operator => operator.addEventListener('click', manageInput));
-equal.addEventListener('click', operate);
-pointBtn.addEventListener('click', manageInput);
-clearButton.addEventListener('click', cleanValue);
-percentButton.addEventListener('click', setPercent);
-signButton.addEventListener('click', setSign);
-onCaButton.addEventListener('click', resetCalculator);
-memoryAddButton.addEventListener('click', memoryAdd);
-memorySubtractButton.addEventListener('click', memorySubtract);
-memoryRecoverClearButton.addEventListener('click', recover_clear_memory);
-document.addEventListener('keypress', manageInput);
 document.addEventListener('DOMContentLoaded', initializeCalculator);
