@@ -115,17 +115,7 @@ function operate() {
   }
 
   if (result === Infinity) {
-    allNumberButtons.forEach(button => button.removeEventListener('click', manageInput));
-    allOperators.forEach(operator => operator.removeEventListener('click', manageInput));
-    equal.removeEventListener('click', operate);
-    pointBtn.removeEventListener('click', manageInput);
-    clearButton.removeEventListener('click', cleanValue);
-    percentButton.removeEventListener('click', setPercent);
-    signButton.removeEventListener('click', setSign);
-    memoryAddButton.removeEventListener('click', memoryAdd);
-    memorySubtractButton.removeEventListener('click', memorySubtract);
-    memoryRecoverClearButton.removeEventListener('click', recover_clear_memory);
-    document.removeEventListener('keypress', manageInput);
+    disableButtons();
     LCD_Display.displayOnScreen('OOPSY!');
     LCD_Display.displayOnScreen('error-on');
   }
@@ -339,6 +329,20 @@ function recover_clear_memory() {
     LCD_Display.displayOnScreen('memory-off');
     memoryResultClearStatus = 'result';
   }
+}
+
+function disableButtons() { // Disable all buttons except ON/CA
+  allNumberButtons.forEach(button => button.removeEventListener('click', manageInput));
+  allOperators.forEach(operator => operator.removeEventListener('click', manageInput));
+  equal.removeEventListener('click', operate);
+  pointBtn.removeEventListener('click', manageInput);
+  clearButton.removeEventListener('click', cleanValue);
+  percentButton.removeEventListener('click', setPercent);
+  signButton.removeEventListener('click', setSign);
+  memoryAddButton.removeEventListener('click', memoryAdd);
+  memorySubtractButton.removeEventListener('click', memorySubtract);
+  memoryRecoverClearButton.removeEventListener('click', recover_clear_memory);
+  document.removeEventListener('keypress', manageInput);
 }
 
 document.addEventListener('DOMContentLoaded', initializeCalculator);
