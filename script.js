@@ -285,10 +285,12 @@ function memoryAdd() {
   if (activeOperand = 1) {
     memory += Number(operand1);
     LCD_Display.displayOnScreen('memory-on');
+    operand1 = '0';
   }
   else {
     memory += Number(operand2);
     LCD_Display.displayOnScreen('memory-on');
+    operand2 = '0';
   }
 }
 
@@ -298,10 +300,12 @@ function memorySubtract() {
   if (activeOperand = 1) {
     memory -= Number(operand1);
     LCD_Display.displayOnScreen('memory-on');
+    operand1 = '0';
   }
   else {
     memory -= Number(operand2);
     LCD_Display.displayOnScreen('memory-on');
+    operand2 = '0';
   }
 }
 
