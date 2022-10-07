@@ -36,7 +36,11 @@ function Display() {
         subtextMemory.innerText = '';
         break;
       default:
-        if (value.toString().length > 9) LCD.innerText = 'NO SPACE' // Try to avoid display overflow
+        if (value.toString().length > 9) {
+          LCD.innerText = 'NO SPACE' // Try to avoid display overflow
+          subtextError.innerText = 'E';
+          disableButtons();
+        }
         else LCD.innerText = value;
     }
   }
